@@ -27,6 +27,14 @@ class Movie
 
 $movie1 = new Movie("Il Signore degli anelli", "eng", "leo, Marco, Giacomo, Giovanni","2:30h", "Fantasy");
 
+$movie2 = new Movie("The Hobbit", "eng", "gino, Marco, stefano, Giovanni","2:45h", "Fantasy");
+
+echo $movie1->getFullMovie();
+echo $movie2->getFullMovie();
+
+
+
+
 
 
 
