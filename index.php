@@ -1,33 +1,15 @@
 <?php
+include_once __DIR__ . '/models/genre.php';
+include_once __DIR__ . '/models/movies.php';
 
-class Movie 
-{
-   public $title;
-   public $language;
-   public $cast;
-   public $duration;
-   public $genre;
+$movie1 = new Movie("Il Signore degli anelli", "eng", "leo, Marco, Giacomo, Giovanni","2:30h", ["Fantasy"]);
+
+$movie2 = new Movie("The Hobbit", "eng", "gino, Marco, stefano, Giovanni","2:45h", ["Fantasy"]);
+
+$movies = [$movie1 , $movie2];
 
 
 
-  public function __construct($_title, $_language, $_cast, $_duration, $_genre)
-  {
-    $this->title = $_title; 
-    $this->language = $_language;
-    $this->cast = $_cast;
-    $this->duration = $_duration;
-    $this->genre = $_genre;
-  }  
-
-  public function getFullMovie()
-  {
-    return "$this->title $this->language $this->cast $this->duration $this->genre";
-  }
-}
-
-$movie1 = new Movie("Il Signore degli anelli", "eng", "leo, Marco, Giacomo, Giovanni","2:30h", "Fantasy");
-
-$movie2 = new Movie("The Hobbit", "eng", "gino, Marco, stefano, Giovanni","2:45h", "Fantasy");
 
 ?>
 
@@ -41,22 +23,19 @@ $movie2 = new Movie("The Hobbit", "eng", "gino, Marco, stefano, Giovanni","2:45h
 </head>
 <body>
     <section>
-       <?php ?> 
+       <?php foreach($movies as $movie): ?> 
        <div>
-       <h2> <?=$movie1->title ?></h2>
-        <h3><?=$movie1->language ?></h3> <span><?=$movie1->duration ?></span>
-        <p><?=$movie1->cast ?></p>
-        <p><?=$movie1->genre ?></p>
+       <h2> <?=$movie->title ?></h2>
+        <h3><?=$movie->language ?></h3> <span><?=$movie->duration ?></span>
+        <p><?=$movie->cast ?></p>
+        
+        <?php foreach ($movie->genres as $genre) : ?>
+            <p><?= $genre ?><br></p>
+        <?php endforeach; ?>
+    
        </div>
 
-       <div>
-       <h2> <?=$movie2->title ?></h2>
-        <h3><?=$movie2->language ?></h3> <span><?=$movie1->duration ?></span>
-        <p><?=$movie2->cast ?></p>
-        <p><?=$movie2->genre ?></p>
-       </div>
-
-       <?php ?> 
+       <?php endforeach ?> 
     </section>
 </body>
 </html>
